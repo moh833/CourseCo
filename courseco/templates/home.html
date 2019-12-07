@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+	{% for course in courses.items %}
+		<article class="media content-section">
+		  <div class="media-body">
+		    <div class="article-metadata">
+				<small class="text-muted">{{ course.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+				{% if course.avg_rate %}
+				<h5>{{ course.avg_rate }}</h5>
+				{% endif %}
+		    </div>
+		    <h2><a class="article-title" href="{{ url_for('course_page', course_id=course.id) }}">{{ course.name }}</a></h2>
+		    <p class="article-content">{{ course.description }}</p>
+		  </div>
+		</article>
+	{% endfor %}
+	<div class="pages-nums">
+	{% for page_num in courses.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+		{% if page_num %}
+			{% if courses.page == page_num %}
+				<a class="btn btn-info mb-4" href="{{ url_for('home', _page=page_num) }}">{{ page_num }}</a>
+			{% else %}
+				<a class="btn btn-outline-info mb-4" href="{{ url_for('home', _page=page_num) }}">{{ page_num }}</a>
+			{% endif %}
+		{% else %}
+			...
+		{% endif %}
+	{% endfor %}
+	</div>
+{% endblock %}
