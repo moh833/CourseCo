@@ -8,7 +8,7 @@ In any directory
 ```
 git clone https://github.com/moh833/CourseCo.git
 
-cd courseco
+cd CourseCo
 ```
 
 ### [Create virtual environment and run it](https://www.geeksforgeeks.org/creating-python-virtual-environment-windows-linux/)
