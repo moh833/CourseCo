@@ -25,41 +25,70 @@
     {% elif current_user.is_authenticated %}
 
     <form method="POST" action="">
-        {{ form.hidden_tag() }}
+        {{ review_form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Review</legend>
             <div class="form-group">
-                {{ form.rate.label(class="form-control-label") }}
-                {% if form.rate.errors %}
-                    {{ form.rate(class="form-control form-control-lg is-invalid") }}
+                {{ review_form.rate.label(class="form-control-label") }}
+                {% if review_form.rate.errors %}
+                    {{ review_form.rate(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.rate.errors %}
+                        {% for error in review_form.rate.errors %}
                         <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.rate(class="form-control form-control-lg") }}
+                    {{ review_form.rate(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.content.label(class="form-control-label") }}
-                {% if form.content.errors %}
-                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                {{ review_form.content.label(class="form-control-label") }}
+                {% if review_form.content.errors %}
+                    {{ review_form.content(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.content.errors %}
+                        {% for error in review_form.content.errors %}
                         <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.content(class="form-control form-control-lg") }}
+                    {{ review_form.content(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
         </fieldset>
         <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
+            {{ review_form.submit(class="btn btn-outline-info") }}
         </div>
     </form>
+    
     {% endif %}
+
+    {% if current_l %}
+        {{ current_l.status }}
+    {% elif current_user.is_authenticated %}
+    <form method="POST" action="">
+        {{ list_form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">List</legend>
+            <div class="form-group">
+                {{ list_form.status.label(class="form-control-label") }}
+                {% if list_form.status.errors %}
+                    {{ list_form.status(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in list_form.status.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ list_form.status(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ list_form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+     {% endif %}
 
 
 

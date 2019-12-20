@@ -7,6 +7,7 @@ from courseco.models import User
 
 
 rates = [('', 'Rate')] + [(str(x), str(x)) for x in range(1, 6)]
+course_list = [('', 'Type'), ('completed', 'Completed'), ('connected', 'Connected'), ('wish', 'Wish'), ('dropped', 'Dropped')]
 
 
 class RegistrationForm(FlaskForm):
@@ -74,3 +75,8 @@ class ResetPasswordForm(FlaskForm):
 	password = PasswordField('Password', validators=[DataRequired(), Length(max=50)])
 	confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(max=50), EqualTo('password')])
 	submit = SubmitField('Reset Password')
+
+
+class ListForm(FlaskForm):
+	status = SelectField('Type', validators=[DataRequired()], choices=course_list)
+	submit = SubmitField('Add')

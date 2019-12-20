@@ -4,8 +4,8 @@ from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from courseco import app, db, bcrypt, mail
 from courseco.forms import (RegistrationForm, LoginForm, UpdateAccountForm, 
-							ReviewForm, RequestResetForm, ResetPasswordForm)
-from courseco.models import User, Course, Review
+							ReviewForm, RequestResetForm, ResetPasswordForm, ListForm)
+from courseco.models import User, Course, Review, List
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
@@ -128,22 +128,33 @@ def course_page(course_id):
 	.order_by(Review.date_posted.desc())\
 	.paginate(page=page, per_page=5)
 	current_review = None
+	current_l = None
 	if current_user.is_authenticated:
 		current_review = Review.query.filter_by(user_id=current_user.id).filter_by(course_id=course.id).first()
+		current_l = List.query.filter_by(user_id=current_user.id).filter_by(course_id=course.id).first()
 		reviews = Review.query.filter_by(course_id=course.id)\
 		.filter(Review.user_id!=current_user.id)\
 		.order_by(Review.date_posted.desc())\
 		.paginate(page=page, per_page=5)
-	form = ReviewForm()
-	if form.validate_on_submit():
-		review = Review(rate=form.rate.data, content=form.content.data, user_id=current_user.id, course_id=course.id) # or author=current_user.id
+	review_form = ReviewForm()
+	list_form = ListForm()
+	if review_form.validate_on_submit():
+		review = Review(rate=review_form.rate.data, content=review_form.content.data, user_id=current_user.id, course_id=course.id) # or author=current_user.id
 		db.session.add(review)
 		db.session.commit()
 		calc_rate(course.id)
 		flash('Your review has been added!', 'success')
 		return redirect(url_for('course_page', course_id=course.id))
-	return render_template('course_page.html', form=form
-			, course=course, reviews=reviews, current_review=current_review)
+	if list_form.validate_on_submit():
+		l = List(status=list_form.status.data, user_id=current_user.id, course_id=course.id) # or author=current_user.id
+		db.session.add(l)
+		db.session.commit()
+		flash(f'The course has been added to {list_form.status.data}!', 'success')
+		return redirect(url_for('course_page', course_id=course.id))
+	elif request.method == 'GET':
+		pass
+	return render_template('course_page.html', review_form=review_form, list_form=list_form
+			, course=course, reviews=reviews, current_review=current_review, current_l=current_l)
 
 
 @app.route('/review/<int:review_id>')
@@ -184,6 +195,18 @@ def delete_review(review_id):
 	calc_rate(review.course_id)
 	flash('Your review has been deleted!', 'success')
 	return redirect(url_for('home'))
+
+#####################
+@app.route('/<int:user_id>', methods=['GET'])
+@login_required
+def show_list(user_id):
+	user_list = List.query.filter_by(user_id=user_id)
+	# if review.reviewer != current_user:
+	# 	abort(403)
+	if user_list:
+		return render_template('show_list.html', title='Show List', user_list=user_list)
+	abort(404)
+	
 
 
 def send_reset_email(user):
