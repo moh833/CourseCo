@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+<!--{% extends 'layout.html' %}
 {% block content %}
 	{% for course in courses.items %}
 		<article class="media content-section">
@@ -28,3 +28,245 @@
 	{% endfor %}
 	</div>
 {% endblock %}
+
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Home</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="main-nav">
+     <div class="container">
+      <a href="#home" class="navbar-brand">
+        <img src="img/pirates.png" width="50" height="50" alt="">
+        <h3 class="d-inline  align-middle">CoCourses</h3>
+      </a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="home.html" class="nav-link lead"><strong>Home</strong></a>
+          </li>
+          <li class="nav-item">
+            <a href="profile.html" class="nav-link lead"><strong>Profile</strong></a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link lead"><strong>contact us</strong> </a>
+          </li>
+           <li class="nav-item">
+            <a href="firstHome.html" class="nav-link">
+              <i class="fas fa-user-times"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+    <section id="actions" class="py-4 mb-4">
+    <div class="container">
+      <div class="row">
+<!--section of cource-->
+        <div class="col-md-4">
+          <div class="card text-center bg-primary mb-3">
+            <div class="card-body">
+              <h3>Title of course</h3>
+              <h4 class="display-4">
+                <i class="fas fa-pencil-alt"></i> 6
+              </h4>
+              <a href="#" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#addCategoryModal">View More Details</a>
+              <a href="#" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#addPostModal">update Rate</a>
+            </div>
+          </div>
+        </div>
+
+
+
+         <div class="col-md-4">
+          <div class="card text-center bg-primary mb-3">
+            <div class="card-body">
+              <h3>Title of course</h3>
+              <h4 class="display-4">
+                <i class="fas fa-pencil-alt"></i> 6
+              </h4>
+              <a href="#" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#addCategoryModal">View More Details</a>
+              <a href="#" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#addPostModal">update Rate</a>
+            </div>
+          </div>
+        </div>
+
+
+
+       <div class="col-md-4">
+          <div class="card text-center bg-primary mb-3">
+            <div class="card-body">
+              <h3>Title of course</h3>
+              <h4 class="display-4">
+                <i class="fas fa-pencil-alt"></i> 6
+              </h4>
+              <a href="#" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#addCategoryModal">View More Details</a>
+              <a href="#" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#addPostModal">update Rate</a>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALS -->
+
+  <!-- Rate and View Model -->
+  <div class="modal fade" id="addPostModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title">Rate course</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <form>
+            <div class="form-group">
+              <label for="category">Rate</label>
+              <select class="form-control">
+                <option value="">5</option>
+                <option value="">4</option>
+                <option value="">3</option>
+                <option value="">2</option>
+                <option value="">1</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="body">Review </label>
+              <textarea class="form-control"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Details of course MODAL -->
+  <div class="modal fade" id="addCategoryModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header text-dark">
+          <h5 class="modal-title">Rates and Review</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+<!-- Add icon library -->
+
+<div>
+  <h3 class="text-dark">
+    <label>Go to site</label>
+    <a href="#" class="stretched-link ">Link of course</a>
+  </h3>
+</div>
+<div class="detailBox text-dark">
+    <div class="titleBox">
+      <label>Comment Box</label>
+        <button type="button" class="close" aria-hidden="true">&times;</button>
+    </div>
+    <div class="commentBox">
+        
+        <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>
+    <div class="actionBox">
+        <ul class="commentList">
+            <li>
+                <div class="commenterImage">
+                  <img src="http://placekitten.com/50/50" />
+                </div>
+                <div class="commentText">
+                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                </div>
+            </li>
+            <li>
+                <div class="commenterImage">
+                  <img src="http://placekitten.com/45/45" />
+                </div>
+                <div class="commentText">
+                    <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<span id="rateMe" class="bg-primary star-rate">
+  <i class="fas fa-star py-2 px-1 rate-popover " data-index="0" data-html="true" data-toggle="popover" data-placement="top" title="Very bad"></i>
+  <i class="fas fa-star py-2 px-1 rate-popover" data-index="1" data-html="true" data-toggle="popover" data-placement="top" title="Poor"></i>
+  <i class="fas fa-star py-2 px-1 rate-popover" data-index="2" data-html="true" data-toggle="popover" data-placement="top" title="OK"></i>
+  <i class="fas fa-star py-2 px-1 rate-popover" data-index="3" data-html="true" data-toggle="popover" data-placement="top" title="Good"></i>
+  <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" data-html="true" data-toggle="popover" data-placement="top" title="Excellent"></i>
+</span>
+
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- FOOTER -->
+  <footer id="footer" class="bg-primary  fixed-bottom" >
+    <div class="container">
+      <div class="row">
+        <div class="col text-center text-white">
+          <h3>CoCourses</h3>
+          <p>Copyright&copy;
+            <span id="year"></span>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+
