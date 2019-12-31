@@ -7,7 +7,11 @@ from courseco.models import User
 
 
 rates = [('', 'Rate')] + [(str(x), str(x)) for x in range(1, 6)]
+<<<<<<< HEAD
 course_list = [('', 'Type'), ('completed', 'Completed'), ('watching', 'Watching'), ('wish', 'Wish'), ('dropped', 'Dropped')]
+=======
+course_list = [('', 'Type'), ('completed', 'Completed'), ('connected', 'Connected'), ('wish', 'Wish'), ('dropped', 'Dropped')]
+>>>>>>> a88920518350a216a2f001d1dc377e257df53a93
 
 
 class RegistrationForm(FlaskForm):

@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h2>{{ course.name }}</h2>
+    {% if course.avg_rate %}
+        <h4>Average Rate {{ course.avg_rate }}</h4>
+    {% else %}
+        <h4>The Course hasn't been rated yet.</h4>
+    {% endif %}
+    <h4 class='mb-3'>{{ course.description }}</h4>
+
+    {% if current_review %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + current_review.reviewer.image_file) }}">
+      <div class="media-body">
+        <div class="article-metadata">
+          <h2>{{ current_review.reviewer.username }}</h2>
+          <a href="{{ url_for('review', review_id=current_review.id) }}">review's link</a>
+          <small class="text-muted">{{ current_review.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+        </div>
+        <h2>{{ current_review.rate }}</h2>
+        <p class="article-content">{{ current_review.content }}</p>
+      </div>
+    </article>
+
+    {% elif current_user.is_authenticated %}
+
+    <form method="POST" action="">
+        {{ review_form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Review</legend>
+            <div class="form-group">
+                {{ review_form.rate.label(class="form-control-label") }}
+                {% if review_form.rate.errors %}
+                    {{ review_form.rate(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in review_form.rate.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ review_form.rate(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ review_form.content.label(class="form-control-label") }}
+                {% if review_form.content.errors %}
+                    {{ review_form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in review_form.content.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ review_form.content(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ review_form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+    
+    {% endif %}
+
+    {% if current_l %}
+        {{ current_l.status }}
+    {% elif current_user.is_authenticated %}
+    <form method="POST" action="">
+        {{ list_form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">List</legend>
+            <div class="form-group">
+                {{ list_form.status.label(class="form-control-label") }}
+                {% if list_form.status.errors %}
+                    {{ list_form.status(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in list_form.status.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ list_form.status(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ list_form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+
+     {% endif %}
+
+
+
+	{% for review in reviews.items %}
+		<article class="media content-section">
+			<img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + review.reviewer.image_file) }}">
+		  <div class="media-body">
+		    <div class="article-metadata">
+              <h2>{{ review.reviewer.username }}</h2>
+		      <small class="text-muted">{{ review.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+		    </div>
+		    <h2>{{ review.rate }}</h2>
+		    <p class="article-content">{{ review.content }}</p>
+		  </div>
+		</article>
+	{% endfor %}
+	<div class="pages-nums">
+	{% for page_num in reviews.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+		{% if page_num %}
+			{% if reviews.page == page_num %}
+				<a class="btn btn-info mb-4" href="{{ url_for('home', _page=page_num) }}">{{ page_num }}</a>
+			{% else %}
+				<a class="btn btn-outline-info mb-4" href="{{ url_for('home', _page=page_num) }}">{{ page_num }}</a>
+			{% endif %}
+		{% else %}
+			...
+		{% endif %}
+	{% endfor %}
+	</div>
+{% endblock %}

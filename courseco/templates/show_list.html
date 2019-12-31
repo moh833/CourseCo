@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<div class="content-section">
+        <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Course ID</th>
+					          <th scope="col">Course Name</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for l in user_list %}
+                  <tr>
+                    <th scope="row">{{ l.course_id }}</th>
+					          <td>{{ l.course.name }}</td>
+                    <td>{{ l.status }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -290,6 +290,18 @@ def course_page(course_id):
 	return render_template('course.html', review_form=review_form, list_form=list_form
 			, course=course, reviews=reviews, current_review=current_review, current_l=current_l)
 
+#####################
+@app.route('/<int:user_id>', methods=['GET'])
+@login_required
+def show_list(user_id):
+	user_list = List.query.filter_by(user_id=user_id)
+	# if review.reviewer != current_user:
+	# 	abort(403)
+	if user_list:
+		return render_template('show_list.html', title='Show List', user_list=user_list)
+	abort(404)
+	
+
 
 def send_reset_email(user):
 	token = user.get_reset_token()
