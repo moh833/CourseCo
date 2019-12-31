@@ -1,0 +1,77 @@
+course_id, review, rate
+1,Excelente curso,4
+1,An excellent introduction to MAVs,5
+1,"So far the best course available online, almost research level. I have never done anything UAV, but I am a researcher for many years. I finish the material within 1 week (not full time). I assume it would be possible for average senior undergraduate student to finish with 4 weeks of intensive study.",5
+1,"Requires MATLAB. In my view, a university should not be promoting a proprietary product. There have been other Cousera courses which used Octave, the free-software implementation of the programming language implemented by MATLAB.I have seen no good reason why Octave should not have been used for this course.",1
+1,This is a well organized very informative course. I would highly recommend it.,5
+1,"could me much better , if the questions in the quiz can actually related to the lecture",4
+1,The videos doesn't tell anything related to the test. How can I know the answers? Am I going to search them on the internet? Then what the meaning to learn this course?,1
+1,awesome courseand an even more amazing university doing it.,5
+1,impressive work by the instructor,5
+1,I am really thankful to Coursera.org and University of Pensyllvania for providing me education in robotics. Its going to be a great experience studying with really great professors.,5
+2,Pretty practical course It' ll involve a good amount of programming. Not quiz and theoretical verification here.,4
+2,Leanring of mechanism and implementation of Kalman filter and particle filter from experiment is very interesting for me. And these method let me know more about map building in SLAM framework.,5
+2,It make me to know more!,5
+2,very minimal presentation of many concepts!,3
+2,"The material is clearly presented. The Matlab exercises complement and reinforce the subject, the level of difficulty is well balanced, thanks for this great course.",5
+2,"What's there is ok, but there is only a few minutes of lecture material each week.",2
+2,"It's a great course. Although the assignment is little tough, you will gain a lot after completing it.",5
+2,Not deeply explained not for beginneer.,3
+2,"Everything is good,but the assignments are a little hard,haha",4
+2,"When I took, assignments 2 and 4 were broken and there were no mentors to help students. However, I am now told they will be fixing the course. I give 2 stars becuase the concepts of the assignments is good, but the course needs more attention.",2
+3,Its a tough course. Need more help within the assignments.,5
+3,One of the best courses available online!!,5
+3,Peer review doesnt make sense. I would appreciate if TA or Instructor reviews it.,4
+3,I really enjoyed learning the course. It was useful for a first time learner such as myself to learn with ease,5
+3,"By the end of the course, you do start to develop the ""hacker mentality"" the course writers want you to develop. That being said, it does seem that they could have done a much better job in the video introducing core concepts that would have given non-programmers a better starting point for looking for outside researchers. A ton of time is wasted in the earliest set of videos on super basic topics, but then the course jumps into some very advanced topics with little attention paid to core concepts except by the mentors in the forums. If these really are ""core concepts"", as described by the mentors, one would think that the teachers would spend time on those concepts in the videos instead of on more arcane use cases (which are precisely the sorts of thing it makes sense to look for in other sources). It really does seem that the teachers have no concept of what is critical content for beginners, given this odd imbalance of tons of time on extremely basic topics, tons of time on fairly advanced topics, and almost no time on critical intermediate-level content.",2
+3,"Thank you so much for sharing an awesome knowledge that everyone would like to come across.It feels a pleasure that i have been R certified from Johns Hopkins University, through Coursera.",5
+3,"This course is definitely a must for anyone and everyone who has not worked on R (doesn't know what R is about), but has some previous exposure to basic programming! I was satisfied with what I had learnt at the end of this course!",4
+3,Very helpful session. The assignments are also challenging,5
+3,Excellent starting point for people new in data science programming,5
+3,"Best in all opinion to learn R in such a planned order ...Thank you Coursera and John Hopkins and definitely a big thanks to Prof. Roger D Peng, Jeff Leek and Brain Caffo",5
+4,"This is my second online class using Couresa and what I've liked (what has helped me) so far in this class have been the videos, I think I could have learned this on my own, but it's great listening to an actual instructor.",5
+4,Excelent course. I am a programmer teacher and I do not know Python. That is the reason to do this course. But beyond that I am excited because the examples and the way to teach are very good.,5
+4,"Video lectures could be a little bit shorter by cutting basic explanations, for example, don't need to go thru the whole list oz numbers to see that each of them is smaller or larger.",4
+4,"I have a background in music education, and wanted to dive into my husband's world so I took this course. It has really helped me to think more like my husband. I have started to communicate with him about his work instead of just listening intently and trying to understand on my own. I expect the other courses to continue helping me move into his world so I can share in his passion.",5
+4,"Very informative, first time programmer friendly and exceptionally entertaining too.",5
+4,Dr. chuck is the best one explaining about Computer sciences. Thanks for the opportunity to learn something new like Python.,5
+4,Material are clear and well explained. Course instructor gives much appreciated personality in his videos.,5
+4,An exceptional course! :),5
+4,The course is a great start. The professor really makes it fun to learn and uses good techniques to make concepts easy to understand.,5
+4,I loved Dr.Chuck!,5
+4,Very good and basic python language course,5
+4,"nice work...python its really cool..thanks dr,chuck",5
+4,Excellent class! Was not a big fan of online courses; especially technical material but Dr Chuck is awesome. So engaging and he really makes the class fun. Really like the bonus videos as well as the format. Each chapter/ section broken down into small chucks so easier to digest. Small sections was also helpful if Is something was unclear and had to re-watch or re-read. Highly recommended.,5
+5,Very relevant and well grounded course. Highly recommended,5
+5,"I do believe both doctors know their business, one of things I enjoyed the most was being to apply, lesson after lesson, the concepts presented in the course, and I actually purchased Joy, inc. and even started reading it!",5
+5,Very good content and essentially methodology of applying the knowledge learnt in real life cases,4
+5,Fantastic! Very educating and fun.,5
+5,"Well paced, interesting, informative and applicable.",5
+5,"Perfect, good materials, ideas and content.",5
+5,"professor Derue is a legend to be hones, True leader :)",5
+5,It is wonderful course and has videos which shows practical demonstrations of the concepts. The videos are also not enacted specifically for the course but picked up from movies or news / documentary. Could relate to every concept well. Very effective. The peer mechanism is well defined.,5
+5,Very good course must to attend if you are a supervisor or a manager or anyone with a team to manage.,5
+5,It helped me as a newly promoted manager to understand better my role with my team.,5
+5,"So far, so good! I am exciting to start the evaluations",5
+5,"Inspiring doctors and Amazing course, thank you for giving me the chance to learn so much knowledge and information from you, I owe you!",5
+5,"I've taken a bunch of Coursera Courses, and these were my favorite. Fun to watch and packed with useful stuff I wish I had known a long time ago.",5
+5,"great content and useful knowledge, in real work.",5
+5,"I'm not new to this subject, but definitively I liked the material, the way they conducted the course, the examples and videos. I liked the way they always resume and make the effort for recap each lesson.I guess this is one of the courses which deserves the be paid.",5
+6,"Professor Andrew keeps us motivated throughout the session.The course coverage is extremely good and neatly presented.Assignments have sufficient instructions that guide us well.After an exhaustive search, I would say this is the best course ever for beginners of Machine Learning.",5
+6,I like it.,5
+6,Because perfection does not exist and this is my first online courses so I can not really objectively judge.,4
+6,Great introduction machine learning course,5
+6,Interesting and useful class that gives brief introduction of machine learning methods.Great course!,5
+6,fantastic overview and practice on key concepts,5
+6,The best machine learning course for the beginners on the web right now!!,5
+6,Excellent online course!,5
+6,I am Lucky to have such resources to learn directly and semi-interactive classes from esteemed faculty.Thank You Coursera!,5
+6,Awesome course for beginners and intermediate learners :),5
+6,"Excellent course, perfectly paced and detailed. The professor Andrew Ng succeeds in creating a comfortable atmosphere and is easy to follow.As a beginner in machine learning, I appreciated the fact that the contents cover the most important aspects of machine learning, without diving in too fast in the underlying mathematics and computational details. I think I need go deeper in these aspects now, but these lessons are rich of practical and methodological tips that i'm sure even advanced engineers would need.Last but not least, the Octave/Matlab hands-on exercises permit a deeper understanding of the algorithms, and to realize what remained misunderstood after the lectures.I am happy that I decided to start (and to end) this course. This was my first on Coursera : there will be others. Many thanks to Mr Ng, to the mentors that helped us on the discussion boards, and to the coursera team in general.Arnaud.",5
+6,This is a great introductory course to machine learning. Andrew is by far one of the best instructors I have ever seen.This course has a great flow and will familiarize you with any important concept in this field in a very practical manner.,5
+6,"It's the best course for ML.....given a little awareness of statistical analysis and probabilistic models, it's really easy to hold a grasp on..",5
+6,"I enjoyed it like a child. I learnt a lot (it shows a lot of different subjects), the practices exercises are very fun (most of them)... The only bad thing I can say of the course is that it was made in 2011 and I do not know how many new things are missing.",5
+6,Great course. I really enjoyed getting an introduction to Machine Learning. It does require you to be comfortable with some math concepts.,5
+6,"Awesome course, you may already know that.",5
+6,Very Good course.Good examplesExcellent quiz and exercisesSlides are also very clear and easy-understanding,5
+6,Excellent course,5

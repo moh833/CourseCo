@@ -9,7 +9,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '2377c5f97f4c5c7bebbed4587f214707'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
-SQLALCHEMY_TRACK_MODIFICATIONS = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 # pass the name of the login func to be redirected to when trying to access login_required pages

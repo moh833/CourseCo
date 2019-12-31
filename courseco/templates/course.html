@@ -1,0 +1,227 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- <div class="container"> -->
+<!-- <div class="row justify-content-center"> -->
+<!-- <div class="col-lg-8"> -->
+  <section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <a href="{{ url_for('home') }}" class="btn btn-light btn-block">
+            <i class="fas fa-arrow-left"></i>
+            Back To Home
+          </a>
+        </div>
+        {% if current_user.is_authenticated %}
+        <div class="col-md-3">
+          <!-- <a href="#" class="btn btn-primary btn-block">
+             Rate course
+          </a> -->
+          {% if current_review %}
+          <a href="#" id="add-rate-link" class="btn btn-success btn-block" data-toggle="modal" data-target="#addRate">Edit Rate</a>
+          {% else %}
+          <a href="#" id="add-rate-link" class="btn btn-success btn-block" data-toggle="modal" data-target="#addRate">Rate and Review</a>
+          {% endif %}
+        </div>
+        <div class="col-md-3">
+          <!-- <a href="#" class="btn btn-primary btn-block">
+              Add to list
+          </a> -->
+          {% if current_l %}
+          <a href="#" id="add-list-link" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addToList"">Added to {{ current_l.status }} list</a>
+          {% else %}
+          <a href="#" id="add-list-link" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addToList"">Add to list</a>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+
+
+
+<!-- MODALS -->
+<!-- ADD POST MODAL -->
+<div class="modal fade" id="addRate">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h5 class="modal-title">Rate course</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <form method="POST" action="" id="review_form" course_id="{{ course.id }}">
+            {{ review_form.hidden_tag() }}
+            <div class="form-group">
+              {{ review_form.rate.label(class="form-control-label") }}
+              {% if review_form.rate.errors %}
+                  {{ review_form.rate(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in review_form.rate.errors %}
+                      <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ review_form.rate(class="form-control form-control-lg") }}
+              {% endif %}
+          </div>
+          <div class="form-group">
+            {{ review_form.content.label(class="form-control-label") }}
+            {% if review_form.content.errors %}
+                {{ review_form.content(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in review_form.content.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ review_form.content(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="modal-footer"></div>
+        <div class="form-group float-right">
+          {{ review_form.submit(class="btn btn-primary") }}
+        </div>
+        </form>
+        <!-- <button class="btn btn-danger float-left" id="delete_review" course_id="{{ course.id }}">Delete</button> -->
+        <a href="{{ url_for('delete_review', course_id=course.id) }}" class="btn btn-danger float-left"">Delete</a> 
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- ADD POST MODAL -->
+<div class="modal fade" id="addToList">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title">Add To List</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-dark">
+          <form method="POST" action="" id="list_form" course_id="{{ course.id }}">
+            {{ list_form.hidden_tag() }}
+            <div class="form-group">
+                {{ list_form.status.label(class="form-control-label") }}
+                {% if list_form.status.errors %}
+                    {{ list_form.status(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in list_form.status.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ list_form.status(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        <div class="modal-footer"></div>
+        <div class="form-group float-right">
+          {{ list_form.submit(class="btn btn-primary") }}
+        </div>
+          </form>
+          <button class="btn btn-danger float-left" id="delete_list" course_id="{{ course.id }}">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- ---------------------- -->
+
+
+
+
+  <!-- Rate card -->
+  <section class="py-4 ">
+    <div class="container text-dark">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+
+            <div class="card-header">
+              <h4>{{ course.name }}</h4>
+              {% if course.avg_rate %}
+              <div class="h5">{{ course.avg_rate }}  <small>out of ({{ course.reviews|length }}) users</small></div>
+              {% else %}
+              <div class="h5">Not Rated Yet</div>
+              {% endif %}
+            </div>
+
+
+            <div class="card-body">
+              <p class="lead">
+                {{ course.description }}
+              </p>
+            </div>
+
+
+
+
+    <div class="row justify-content-center">
+    <div class="card-body col-lg-8">
+    <div class="detailBox text-dark">
+    <div class="titleBox">
+      <label><strong>Reviews</strong></label>
+    </div>
+
+    <!-- <div class="commentBox">
+        <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    </div>  -->
+    <div class="actionBox">
+        <ul class="commentList">
+          {% if current_review %}
+          <li>
+            <div class="commenterImage">
+              <img src="{{ url_for('static', filename='profile_pics/' + current_review.reviewer.image_file) }}" />
+            </div>
+            <div class="commentText">
+                <span class="m-0 p-0 font-weight-bold text-primary h5">{{ current_review.rate }} </span>
+                <h6 class="m-0 p-0 font-weight-bold">{{ current_review.reviewer.username }}</h6>
+                <p class="">{{ current_review.content }}</p> <span class="date sub-text">{{ current_review.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+
+            </div>
+        </li>
+          {% endif %}
+          {% for review in reviews %}
+            <li>
+                <div class="commenterImage">
+                  <img src="{{ url_for('static', filename='profile_pics/' + review.reviewer.image_file) }}" />
+                </div>
+                <div class="commentText">
+                    <!-- <h6 class="mb-1 font-weight-bold"><span class="font-weight-bold text-primary h5">{{ review.rate }} </span> {{ review.reviewer.username }}</h6> -->
+                    <span class="m-0 p-0 font-weight-bold text-primary h5">{{ review.rate }} </span>
+                    <h6 class="m-0 p-0 font-weight-bold">{{ review.reviewer.username }}</h6>
+                    <p class="">{{ review.content }}</p> <span class="date sub-text">{{ review.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+
+                </div>
+            </li>
+          {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>
+
+
+</div> <!-- row -->
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+  </section>
+
+<!-- </div>col-8 -->
+<!-- </div>row -->
+<!-- </div>container -->
+{% endblock %}

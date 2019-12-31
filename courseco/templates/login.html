@@ -1,52 +1,105 @@
 {% extends 'layout.html' %}
 {% block content %}
 	<div class="content-section">
-		<form method="POST" action="">
-			{{ form.hidden_tag() }}
-			<fieldset class="form-group">
-				<legend class="border-bottom mb-4">Log In</legend>
-				<div class="form-group">
-					{{ form.email.label(class="form-control-label") }}
-					{% if form.email.errors %}
-						{{ form.email(class="form-control form-control-lg is-invalid") }}
-						<div class="invalid-feedback">
-							{% for error in form.email.errors %}
-							<span>{{ error }}</span>
-							{% endfor %}
+
+	
+  <!-- HOME SECTION -->
+  <header id="home-section">
+    <div class="dark-overlay">
+      <div class="home-inner container">
+        <div class="row">
+          <div class="col-lg-8 d-none d-lg-block">
+            <h1 class="display-4"><strong>Join The Community</strong> and
+              <strong>Learn Effectively</strong>
+            </h1>
+            <div class="d-flex">
+              <div class="p-4 align-self-start">
+                <i class="fas fa-check fa-2x"></i>
+              </div>
+              <div class="p-4 align-self-end h4">
+                Share your thoughts and reviews
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <div class="p-4 align-self-start">
+                <i class="fas fa-check fa-2x"></i>
+              </div>
+              <div class="p-4 align-self-end h4">
+                Organize Your learning process
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <div class="p-4 align-self-start">
+                <i class="fas fa-check fa-2x"></i>
+              </div>
+              <div class="p-4 align-self-end h4">
+                Get recommendations
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card bg-primary text-center card-form">
+              <div class="card-body">
+                <h3>Sign in Today</h3>
+				<p>Please fill out this form to register</p>
+				
+				<form method="POST" action="">
+					{{ form.hidden_tag() }}
+					<fieldset class="form-group">
+						<div class="form-group mt-4">
+							{% if form.email.errors %}
+								{{ form.email(class="form-control form-control-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.email.errors %}
+									<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.email(class="form-control form-control-lg") }}
+							{% endif %}
 						</div>
-					{% else %}
-						{{ form.email(class="form-control form-control-lg") }}
-					{% endif %}
-				</div>
-				<div class="form-group">
-					{{ form.password.label(class="form-control-label") }}
-					{% if form.password.errors %}
-						{{ form.password(class="form-control form-control-lg is-invalid") }}
-						<div class="invalid-feedback">
-							{% for error in form.password.errors %}
-							<span>{{ error }}</span>
-							{% endfor %}
+						<div class="form-group mb-4">
+							{% if form.password.errors %}
+								{{ form.password(class="form-control form-control-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.password.errors %}
+									<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.password(class="form-control form-control-lg") }}
+							{% endif %}
 						</div>
-					{% else %}
-						{{ form.password(class="form-control form-control-lg") }}
-					{% endif %}
-				</div>
-				<div class="form-check">
-					{{ form.remember(class="form-check-input") }}
-					{{ form.remember.label(class="form-check-label") }}
-				</div>
-			</fieldset>
-			<div class="form-group">
-				{{ form.submit(class="btn btn-outline-info") }}
-			<small class="text-muted ml-2">
-				<a href="{{ url_for('reset_request') }}">Forgot Password?</a>
-			</small>
-			</div>
-		</form>
-	</div>
-	<div class="border-top pt-3">
-		<small class="text-muted">
-			Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
-		</small>
-	</div>
+						<div class="form-check">
+							{{ form.remember(class="form-check-input") }}
+							{{ form.remember.label(class="form-check-label") }}
+						</div>
+					</fieldset>
+					<div class="form-group">
+						{{ form.submit(class="btn btn-outline-light btn-block") }}
+					</div>
+					<div class="form-group">
+						<a href="{{ url_for('register') }}" class="stretched-link text-dark">Not member ?</a>
+					</div>
+					<div class="form-group">
+						<a href="{{ url_for('reset_request') }}" class="stretched-link text-dark">Forgot Password?</a>
+					</div>
+					
+
+				</form>
+
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
 {% endblock %}

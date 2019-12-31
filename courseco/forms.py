@@ -7,14 +7,15 @@ from courseco.models import User
 
 
 rates = [('', 'Rate')] + [(str(x), str(x)) for x in range(1, 6)]
+course_list = [('', 'Type'), ('completed', 'Completed'), ('watching', 'Watching'), ('wish', 'Wish'), ('dropped', 'Dropped')]
 
 
 class RegistrationForm(FlaskForm):
 	# add parameter render_kw={'placeholder': 'Username'}
-	username = StringField('Username', validators=[DataRequired(), Length(min=3, max=20)], render_kw={'autofocus': 'true'})
-	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=50)], render_kw={'autocomplete': 'on'})
-	password = PasswordField('Password', validators=[DataRequired(), Length(max=50)])
-	confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(max=50), EqualTo('password')])
+	username = StringField('Username', validators=[DataRequired(), Length(min=3, max=20)], render_kw={'autofocus': 'true', 'placeholder': 'Username'})
+	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=50)], render_kw={'autocomplete': 'on', 'placeholder': 'Email'})
+	password = PasswordField('Password', validators=[DataRequired(), Length(max=50)], render_kw={'placeholder': 'Password'})
+	confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(max=50), EqualTo('password')], render_kw={'placeholder': 'Confirm Password'})
 	submit = SubmitField('Sign Up')
 
 	def validate_username(self, username):
@@ -29,15 +30,15 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=50)], render_kw={'autofocus': 'true', 'autocomplete': 'on'})
-	password = PasswordField('Password', validators=[DataRequired(), Length(max=50)])
+	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=50)], render_kw={'autofocus': 'true', 'autocomplete': 'on', 'placeholder': 'Email'})
+	password = PasswordField('Password', validators=[DataRequired(), Length(max=50)], render_kw={'placeholder': 'Password'})
 	remember = BooleanField('Remember Me')
 	submit = SubmitField('Login')
 
 
 class UpdateAccountForm(FlaskForm):
-	username = StringField('Username', validators=[DataRequired(), Length(min=3, max=20)], render_kw={'autofocus': 'true'})
-	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=50)], render_kw={'autocomplete': 'on'})
+	username = StringField('Username', validators=[DataRequired(), Length(min=3, max=20)], render_kw={'autofocus': 'true', 'placeholder': 'Username'})
+	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=50)], render_kw={'autocomplete': 'on', 'placeholder': 'Email'})
 	picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Update')
 
@@ -61,7 +62,7 @@ class ReviewForm(FlaskForm):
 
 
 class RequestResetForm(FlaskForm):
-	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=50)], render_kw={'autofocus': 'true'})
+	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=50)], render_kw={'autofocus': 'true', 'placeholder': 'Email'})
 	submit = SubmitField('Request Password Reset')
 
 	def validate_email(self, email):
@@ -74,3 +75,8 @@ class ResetPasswordForm(FlaskForm):
 	password = PasswordField('Password', validators=[DataRequired(), Length(max=50)])
 	confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), Length(max=50), EqualTo('password')])
 	submit = SubmitField('Reset Password')
+
+
+class ListForm(FlaskForm):
+	status = SelectField('Type', validators=[DataRequired()], choices=course_list)
+	submit = SubmitField('Add')

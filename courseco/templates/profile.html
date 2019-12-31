@@ -1,0 +1,223 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+  <div class="container">
+    <header id="main-header">
+      <div class="row no-gutters">
+        <div class="col-lg-4 col-md-5">
+          <img src="{{ image_file }}" alt="">
+        </div>
+        <div class="col-lg-8 col-md-7">
+          <div class="d-flex flex-column">
+            <div class="p-5 bg-dark text-white">
+              <div class="d-flex flex-row justify-content-between align-items-center">
+                <h1 class="display-4">{{ current_user.username }}</h1>
+
+              </div>
+            </div>
+
+            <div class="p-4 bg-black">
+              Cocourse
+            </div>
+
+            <div>
+              <div class="d-flex flex-row text-white align-items-stretch text-center">
+                <div class="port-item p-4  bg-success" data-toggle="collapse" data-target="#home">
+                  <i class="fas fa-home fa-2x d-block"></i>
+                  <span class="d-none d-sm-block">Profile</span>
+                </div>
+                <div class="port-item p-4 bg-primary" data-toggle="collapse" data-target="#resume">
+                  <i class="fas fa-graduation-cap fa-2x d-block"></i>
+                  <span class="d-none d-sm-block">Rated Courses</span>
+                </div>
+                <div class="port-item p-4 bg-warning" data-toggle="collapse" data-target="#work">
+                  <i class="fas fa-folder-open fa-2x d-block"></i>
+                  <span class="d-none d-sm-block">My List</span>
+                </div>
+                <div class="port-item p-4 bg-danger" data-toggle="collapse" data-target="#contact">
+                  <i class="fas fa-envelope fa-2x d-block"></i>
+                  <span class="d-none d-sm-block">Edit profile</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HOME -->
+    <div id="home" class="collapse show ">
+      <div class="card card-body bg-primary  py-5">
+        <h2>Welcome, {{ current_user.username }}</h2>
+      </div>
+
+          <div class="card p-4 text-dark">
+            <div class="card-body">
+              <h4>Username</h4>
+              <p>{{ current_user.username }}</p>
+              <h4>Email</h4>
+              <p>{{ current_user.email }}</p>
+            </div>
+          </div>
+    </div>
+
+    <!-- RESUME -->
+    <div id="resume" class="collapse mb-4 mt-4">
+    <div class="container">
+      <div class="row">
+        {% for review in user_reviews %}
+        <div class="col-md-4">
+          <div class="card text-center bg-primary text-white mb-3">
+            <div class="card-body">
+              <h3>{{ review.course.name }}</h3>
+              <h4 class="display-4">
+                <i class="fas fa-pencil-alt"></i> {{ review.rate }}
+              </h4>
+              <a href="{{ url_for('course_page', course_id=review.course_id) }}" class="btn btn-outline-light btn-sm">View</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div><!-- row -->
+    </div>
+  </div>
+
+    <!-- WORK -->
+    <div id="work" class="collapse">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header text-dark">
+              <h4>Your List</h4>
+            </div>
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Rate</th>
+                  <th>state</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="text-dark">
+                {% for item in user_list %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>{{ item.course.name }}</td>
+                  <td>{{ user_reviews.filter_by(course_id=item.course.id).first().rate }}</td>
+                  <td>{{ item.status }}</td>
+                  <td>
+                    <a href="{{ url_for('course_page', course_id=item.course_id) }}" class="btn btn-secondary">
+                      <i class="fas fa-angle-double-right"></i> Go to Course
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reset password  -->
+    <div id="contact" class="collapse">
+      <div class="card card-body bg-danger text-white py-5">
+        <h2>Update Profile </h2>
+        <p class="lead"></p>
+      </div>
+
+      <div class="card card-body py-5">
+        <form method="POST" action="" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-danger text-white">
+                </span>
+              </div>
+            {% if form.username.errors %}
+              {{ form.username(class="form-control bg-dark text-white is-invalid") }}
+              <div class="invalid-feedback">
+                {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.username(class="form-control bg-dark text-white") }}
+            {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-danger text-white">
+                </span>
+              </div>
+            {% if form.email.errors %}
+              {{ form.email(class="form-control bg-dark text-white is-invalid") }}
+              <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.email(class="form-control bg-dark text-white") }}
+            {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-danger text-white">
+              </span>
+            </div>
+            {% if form.picture.errors %}
+              {{ form.picture(class="form-control bg-dark text-white is-invalid") }}
+              <div class="invalid-feedback">
+                {% for error in form.picture.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.picture(class="form-control bg-dark text-white") }}
+            {% endif %}
+            </div>
+        </div>
+          <div class="form-group">
+            {{ form.submit(class="btn btn-danger btn-block btn-lg") }}
+          </div>
+
+
+
+<!-- 
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-danger text-white">
+                </span>
+              </div>
+              <input type="text" class="form-control bg-dark text-white" placeholder="old_password">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-danger text-white">
+                </span>
+              </div>
+              <input type="text" class="form-control bg-dark text-white" placeholder="New_password">
+            </div>
+          </div>
+
+          <input type="submit" value="Submit" class="btn btn-danger btn-block btn-lg"> -->
+
+
+        </form>
+      </div>
+    </div>
+    {% endblock %}

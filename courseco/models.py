@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
 	password = db.Column(db.String(60), nullable=False) 
 
 	reviews = db.relationship('Review', backref='reviewer', lazy=True)
+	lists = db.relationship('List', backref='user', lazy=True)
 
 
 	def get_reset_token(self, expires_sec=1800):
@@ -47,6 +48,7 @@ class Course(db.Model):
 	avg_rate = db.Column(db.Float)
 
 	reviews = db.relationship('Review', backref='course', lazy=True)
+	lists = db.relationship('List', backref='course', lazy=True)
 
 	def __repr__(self):
 		return f"Course('{self.name}', '{self.avg_rate}')"
@@ -55,10 +57,18 @@ class Review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 	content = db.Column(db.Text)
-	rate = db.Column(db.Integer)
+	rate = db.Column(db.Integer, default=0.0)
 
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 	course_id = db.Column(db.Integer, db.ForeignKey('course.id'), nullable=False)
 
 	def __repr__(self):
 		return f"Review('{self.date_posted}', '{self.rate}')"
+
+
+class List(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	status = db.Column(db.String(10), nullable=False)
+
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+	course_id = db.Column(db.Integer, db.ForeignKey('course.id'), nullable=False)
