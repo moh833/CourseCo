@@ -1,6 +1,8 @@
 # CourseCo
 
 
+## [Demo](https://course-co.herokuapp.com/)
+
 ## Setting up the environment
 
 In any directory
